@@ -1,0 +1,42 @@
+create iam user temp - admin access
+create secret access key
+create ec2
+create ecr
+
+
+to github repo attach aws credentials (temp)
+
+add to git secrets - AWS_ACCESS_KEY_ID
+                    AWS_SECRET_ACCESS_KEY
+                    EC2_HOST
+                    EC2_SSH_KEY
+                    EC2_USER
+                    ECR_REPOSITORY
+
+copy and paste workflow and change region and image_uri (ecr uri), change app name to ecr repo name
+connect to ec2
+sudo yum install aws-cli
+aws configure
+
+        eg -- [ec2-user@ip-172-31-39-152 ~]$ aws configure
+            AWS Access Key ID [None]: AKIAQKPILUA3UM7SjkjfsdfBLW4
+            AWS Secret Access Key [None]: A/5Y1B/X1uU3HsfszZx+qo187JeKZeU/3O6II2HrNhD
+            Default region name [None]: eu-north-1
+            Default output format [None]: json
+
+
+setup docker in ec2-- 
+    sudo yum update -y
+    sudo yum install docker -y
+    sudo service docker start
+    sudo usermod -a -G docker ec2-user
+    sudo chkconfig docker on
+
+
+
+run this command but replace the last part which includes the image tag -> updated in workflow basic file so it will configure this 
+aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 02249954008567.dkr.ecr.eu-north-2.amazonaws.com/deploy_tests
+
+
+
+in workflow_basic file also configured to create ecr reposotory whenever there is firsttime deployment of the github repo
