@@ -40,3 +40,5 @@ aws ecr get-login-password --region eu-north-1 | docker login --username AWS --p
 
 
 in workflow_basic file also configured to create ecr reposotory whenever there is firsttime deployment of the github repo
+
+some changes - https://chatgpt.com/share/62b58c86-23ad-4f4a-94c5-af6fb298a273
